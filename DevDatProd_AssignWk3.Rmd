@@ -1,0 +1,55 @@
+---
+title: "R Markdown Presentation & Plotly"
+author: "Thawatchai Phakwithoonchai"
+date: "3/6/2020"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE, tidy=TRUE, tidy.opts=list(blank = FALSE, width.cutoff = 60)}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction  
+
+Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. We would love to see you show off your creativity!
+
+\newpage
+
+# Review criteria
+
+The rubric contains the following two questions:  
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?  
+2. Is the web page a presentation and does it feature an interactive plot that appears to have been created with Plotly?  
+
+\newpage
+
+# Getting the data
+
+```{r Getting the data}
+library(plotly)
+data("diamonds")
+summary(diamonds)
+set.seed(1234)
+data <- diamonds[sample(nrow(diamonds), 500), ] # Select the 500 samples
+```
+
+\newpage  
+
+# Exploratory data analysis
+
+```{r Exploratory data analysis, fig.align='center', tidy=TRUE}
+plot <- plot_ly(data = data, x = ~table, y = ~depth, z = ~carat, type = "scatter3d", color = ~price, colors = "Spectral", size = 1, alpha = 0.8, mode = "markers")
+plot
+```
+
+3d scatter plot was shown the relationship of 500 sample diamonds in corresponding to the following parameters:
+
+1. dimension or size of diamonds (table and depth)  
+2. price of diamonds (price)
+2. quality of cut (color of plot: IF is best, while I1 is worst)
+3. weight of diamonds i.e. carat (size of scatter points)
+
+# Thanks !!!
